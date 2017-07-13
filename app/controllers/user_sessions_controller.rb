@@ -8,9 +8,9 @@ class UserSessionsController < ApplicationController
 			params[:user_session])
 		if @user_session.authenticate!
 		# Não esqueça de adicionar a chave no i18n!
-		redirect_to root_path, notice: t('flash.notice.signed_in')
+			redirect_to root_path, notice: t('flash.notice.signed_in')
 		else
-		render :new
+			render :new
 		end
 	end
 	

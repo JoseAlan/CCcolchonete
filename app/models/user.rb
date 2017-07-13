@@ -15,11 +15,25 @@ class User < ApplicationRecord
 	end
 
 	has_secure_password
-
 	
-  	def self.authenticate(email, password)
-    confirmed.
-      find_by(email: email).
-      try(:authenticate, password)
-  	end
+	before_create do |user|
+	user.confirmation_token = SecureRandom.urlsafe_base64
+	end
+
+	def self.authenticate(email, password)
+		confirmed.
+		find_by(email: email).
+		try(:authenticate, password)
+	end
+
+  	def confirm!
+		return if confirmed?
+		self.confirmed_at = Time.current
+		self.confirmation_token = ''
+		save!
+	end
+	
+	def confirmed?
+		confirmed_at.present?
+	end
 end
