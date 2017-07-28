@@ -5,18 +5,14 @@ $sans-serif-families: "Helvetica", sans-serif;
 $error-text-color: #B94A48;
 $success-text-color: #468847;
 
+@import "shadow";
+
 * {
 font-family: $sans-serif-families;
 	font-size: 14px;
 }
 body { 
 	background-color: #f5f5f5; 
-}
-
-@mixin shadow($color, $x, $y, $radius) {
--moz-box-shadow: $color $x $y $radius;
--webkit-box-shadow: $color $x $y $radius;
-box-shadow: $color $x $y $radius;
 }
 
 header {
